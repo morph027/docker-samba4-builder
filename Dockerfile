@@ -31,6 +31,7 @@ RUN	apt-get update \
 	libparse-yapp-perl \
 	libpopt-dev \
 	libreadline-dev \
+	libwbclient0 \
 	perl \
 	perl-modules \
 	pkg-config \
