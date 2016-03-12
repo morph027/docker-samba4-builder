@@ -1,50 +1,40 @@
-FROM debian:jessie
+FROM ubuntu:trusty
 
 MAINTAINER morph027 "morphsen@gmx.com"
 
 RUN	apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get -y -qq install \
 	acl \
-	attr \
 	autoconf \
-	bison \
+	bind9utils \
 	build-essential \
-	debhelper \
+	curl \
 	dnsutils \
-	docbook-xml \
-	docbook-xsl \
-	flex \
 	gdb \
+	git-core \
 	krb5-user \
 	libacl1-dev \
-	libaio-dev \
 	libattr1-dev \
 	libblkid-dev \
-	libbsd-dev \
-	libcap-dev \
-	libcups2-dev \
-	libgnutls28-dev \
-	libjson-perl \
+	libgcrypt11-dev \
+	libgnutls-dev \
 	libldap2-dev \
-	libncurses5-dev \
-	libpam0g-dev \
-	libparse-yapp-perl \
+	libldb-dev \
 	libpopt-dev \
 	libreadline-dev \
-	perl \
-	perl-modules \
+	libtalloc-dev \
+	libtevent-dev \
 	pkg-config \
-	python-all-dev \
 	python-dev \
 	python-dnspython \
-	python-crypto \
-	rpm \
-	ruby \
-	ruby-dev \
-	xsltproc \
-	zip \
+	resolvconf \
 	zlib1g-dev \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN gem install fpm --no-rdoc --no-ri
+RUN	gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
+	&& (\curl -ksSL https://get.rvm.io | bash -s stable --ruby)
+
+ENV	PATH /usr/local/rvm/bin:/usr/local/rvm/rubies/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+RUN	gem install fpm --no-rdoc --no-ri
