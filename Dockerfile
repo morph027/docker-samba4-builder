@@ -28,7 +28,6 @@ RUN	apt-get update \
 	libldap2-dev \
 	libncurses5-dev \
 	libpam0g-dev \
-	libparse-yapp-perl \
 	libpopt-dev \
 	libreadline-dev \
 	lsb-release \
