@@ -9,6 +9,7 @@ RUN	apt-get update \
 	autoconf \
 	bison \
 	build-essential \
+	curl \
 	debhelper \
 	dnsutils \
 	docbook-xml \
@@ -47,4 +48,9 @@ RUN	apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN gem install fpm --no-rdoc --no-ri
+RUN	gem install fpm --no-rdoc --no-ri
+
+RUN	curl -s -o /tmp/aptly_cli.gem http://download.morph027.de/aptly_cli-0.2.1.gem \
+	&& gem install commander httmultiparty --no-ri --no-rdoc \
+	&& gem install --local /tmp/aptly_cli.gem \
+	&& rm -f /tmp/aptly_cli.gem
