@@ -39,7 +39,4 @@ ENV	PATH /usr/local/rvm/bin:/usr/local/rvm/rubies/default/bin:/usr/local/sbin:/u
 
 RUN	gem install fpm --no-rdoc --no-ri
 
-RUN	curl -s -o /tmp/aptly_cli.gem http://download.morph027.de/aptly_cli-0.2.1.gem \
-	&& gem install commander httmultiparty --no-ri --no-rdoc \
-	&& gem install --local /tmp/aptly_cli.gem \
-	&& rm -f /tmp/aptly_cli.gem
+RUN	gem install aptly_cli --no-rdoc --no-ri
